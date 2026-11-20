@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: ./calculator-api
+    image: calculator-api:1.0
+    container_name: calc-api
+    restart: unless-stopped
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+      start_period: 20s
+    networks:
+      - calc-net
+
+  ui:
+    build:
+      context: ./calculator-ui
+    image: calculator-ui:1.0
+    container_name: calc-ui
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - calc-net
+
+networks:
+  calc-net:
+    driver: bridge

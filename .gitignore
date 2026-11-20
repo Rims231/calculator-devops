@@ -1,0 +1,26 @@
+# Java / Maven
+target/
+*.jar
+*.class
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# Terraform - NEVER commit
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.tfplan
+
+# Secrets
+*.pem
+*.key
+.env
+
+# Editor
+.vscode/
+.idea/

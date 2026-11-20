@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Calculator</h1>
+  <p class="subtitle">Angular frontend &middot; Spring Boot API</p>
+
+  <div class="card">
+    <div class="row">
+      <label>First number</label>
+      <input type="number" [(ngModel)]="a" />
+    </div>
+
+    <div class="row">
+      <label>Operation</label>
+      <select [(ngModel)]="operation">
+        <option value="add">Add (+)</option>
+        <option value="subtract">Subtract (&minus;)</option>
+        <option value="multiply">Multiply (&times;)</option>
+        <option value="divide">Divide (&divide;)</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Second number</label>
+      <input type="number" [(ngModel)]="b" />
+    </div>
+
+    <button (click)="calculate()" [disabled]="loading">
+      {{ loading ? 'Calculating...' : 'Calculate' }}
+    </button>
+
+    <div class="result" *ngIf="result !== null">
+      <span class="label">Result</span>
+      <span class="value">{{ result }}</span>
+    </div>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </div>
+</div>
